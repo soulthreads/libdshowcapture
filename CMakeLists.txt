@@ -1,13 +1,8 @@
-cmake_minimum_required(VERSION 2.8.12)
+cmake_minimum_required(VERSION 3.1.0)
 
 project(libdshowcapture)
 
-set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${CMAKE_SOURCE_DIR}/cmake/Modules/")
-
 OPTION(BUILD_SHARED_LIBS "Build shared library" ON)
-
-find_package(CXX11 REQUIRED)
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${CXX11_FLAGS}")
 
 if(${CMAKE_C_COMPILER_ID} MATCHES "Clang" OR ${CMAKE_CXX_COMPILER_ID} MATCHES "Clang")
 	set(CMAKE_COMPILER_IS_CLANG TRUE)
@@ -103,3 +98,5 @@ target_link_libraries(libdshowcapture
 	strmiids
 	ksuser
 	wmcodecdspuuid)
+
+target_compile_features(libdshowcapture PRIVATE cxx_lambdas)
